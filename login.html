@@ -1,40 +1,58 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login Page</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <style>
         body {
             font-family: Arial, sans-serif;
             display: flex;
+            /* text-align: center; */
             justify-content: center;
             align-items: center;
             height: 100vh;
             margin: 0;
         }
 
-        form {
-            width: 300px;
-            padding: 20px;
+        .container {
+            background-color: #4CAF50;
+            display: flex;
+            flex-direction: column;
+            /* text-align: center; */
+            width: 400px;
             border: 1px solid #ccc;
             border-radius: 5px;
+        }
+
+        .options {
+            display: flex;
+            /* border: 1px solid #ccc; */
+            justify-content: center;
+            text-align: center;
+            /* margin-bottom: 20px; */
+        }
+
+        .options div {
+            flex: 1;
+            padding: 20px 12px;
+            /* border: 1px solid #ccc; */
+            background-color: white;
+        }
+
+        .user-entry {
+            padding: 30px 50px;
+
         }
 
         input[type="text"],
         input[type="password"] {
             width: 100%;
             padding: 10px;
-            margin: 8px 0;
-            display: inline-block;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            box-sizing: border-box;
-        }
-
-        select {
-            width: 100%;
-            padding: 10px;
-            margin: 8px 0;
+            margin-bottom: 20px;
+            margin-top: 10px;
             display: inline-block;
             border: 1px solid #ccc;
             border-radius: 4px;
@@ -42,32 +60,113 @@
         }
 
         input[type="submit"] {
-            background-color: #4CAF50;
+            font-size: 15px;
+            width: 100%;
+            background-color: black;
             color: white;
+            justify-content: center;
             padding: 10px 15px;
-            margin-top: 10px;
+            margin: auto;
             border: none;
             border-radius: 4px;
             cursor: pointer;
+            height: 40px;
+        }
+
+        h2 {
+            text-align: center;
+            padding: 0%;
+            margin-bottom: 10px;
+            margin-top: 0;
         }
     </style>
+
+    <script>
+        $(document).ready(function () {
+            $(".registerForm").hide();
+            $("#login").css("background", "none");
+
+            $("#signup").click(function () {
+                $(".loginForm").hide();
+                $(".registerForm").slideDown("slow");
+                $("#signup").css("background", "none");
+                $("#login").css("background", "#fff");
+
+            });
+            $("#login").click(function () {
+                $(".loginForm").slideDown("slow");
+                $(".registerForm").hide();
+                $("#login").css("background", "none");
+                $("#signup").css("background", "#fff");
+            });
+        });
+    </script>
+    <script>
+        function validateRegisterForm() {
+            var newUsername = document.getElementById("new-username").value;
+            var newPassword = document.getElementById("new-password").value;
+            var errorSpan = document.getElementById("register-error");
+
+            if (newUsername === "" || newPassword === "") {
+                errorSpan.innerHTML = "Please fill in all fields.";
+                return false;
+            } else {
+                errorSpan.innerHTML = "";
+                return true;
+            }
+        }
+
+        function validateLoginForm() {
+            var username = document.getElementById("username").value;
+            var password = document.getElementById("password").value;
+            var errorSpan = document.getElementById("login-error");
+
+            if (username === "" || password === "") {
+                errorSpan.innerHTML = "Please fill in all fields.";
+                return false;
+            } else {
+                errorSpan.innerHTML = "";
+                return true;
+            }
+        }
+    </script>
 </head>
 
 <body>
-    <form method="post" action="login.php">
-        <h2>Login</h2>
-        <label for="user-type">User Type:</label><br>
-        <select id="user-type" name="user-type">
-            <option value="admin">Admin</option>
-            <option value="customer">Customer</option>
-            <option value="seller">Seller</option>
-        </select><br><br>
-        <label for="username">Username:</label><br>
-        <input type="text" id="username" name="username"><br>
-        <label for="password">Password:</label><br>
-        <input type="password" id="password" name="password"><br><br>
-        <input type="submit" value="Submit">
-    </form>
+    <div class="container">
+
+        <div class="options">
+            <div id="login">Login</div>
+            <div id="signup">Sign Up</div>
+        </div>
+
+        <div class="user-entry">
+
+            <div class="loginForm">
+                <form method="post" action="login.php" onsubmit="return validateLoginForm();">
+                    <h2>Login</h2>
+                    <label for="username">Username:</label><br>
+                    <input type="text" id="username" name="username" placeholder="Email or Username"><br>
+                    <label for="password">Password:</label><br>
+                    <input type="password" id="password" name="password" placeholder="Password">
+                    <span id="login-error" style="color: red;"></span><br><br>
+                    <input type="submit" value="Login">
+                </form>
+            </div>
+
+            <div class="registerForm">
+                <form method="post" action="register.php" onsubmit="return validateRegisterForm();">
+                    <h2>Register</h2>
+                    <label for="new-username">Username:</label><br>
+                    <input type="text" id="new-username" name="new-username" placeholder="Enter the email"><br>
+                    <label for="new-password">Password:</label><br>
+                    <input type="password" id="new-password" name="new-password" placeholder="Create the password">
+                    <span id="register-error" style="color: red;"></span><br><br>
+                    <input type="submit" value="Register">
+                </form>
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>
