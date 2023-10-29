@@ -10,6 +10,9 @@
         body {
             font-family: Arial, sans-serif;
             display: flex;
+            /* background-color: black; */
+            background-size: auto;
+            background-image: url(project_image/i.avif);
             /* text-align: center; */
             justify-content: center;
             align-items: center;
@@ -23,8 +26,8 @@
             flex-direction: column;
             /* text-align: center; */
             width: 400px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
+            border: 2px solid #ccc;
+            border-radius: 10px;
         }
 
         .options {
@@ -40,6 +43,7 @@
             padding: 20px 12px;
             /* border: 1px solid #ccc; */
             background-color: white;
+            
         }
 
         .user-entry {
@@ -78,6 +82,12 @@
             padding: 0%;
             margin-bottom: 10px;
             margin-top: 0;
+        }
+        #login{
+            border-radius: 10px 0px 10px 0px;
+        }
+        #signup{
+            border-radius: 0px 10px 0px 10px;
         }
     </style>
 
@@ -136,15 +146,15 @@
     <div class="container">
 
         <div class="options">
-            <div id="login">Login</div>
+            <div id="login">Sign In</div>
             <div id="signup">Sign Up</div>
         </div>
 
         <div class="user-entry">
 
             <div class="loginForm">
-                <form method="post" action="login.php" onsubmit="return validateLoginForm();">
-                    <h2>Login</h2>
+                <form method="post" action="php/ulogin.php" onsubmit="return validateLoginForm();">
+                    <h2>Sign In</h2>
                     <label for="username">Username:</label><br>
                     <input type="text" id="username" name="username" placeholder="Email or Username"><br>
                     <label for="password">Password:</label><br>
@@ -155,8 +165,8 @@
             </div>
 
             <div class="registerForm">
-                <form method="post" action="register.php" onsubmit="return validateRegisterForm();">
-                    <h2>Register</h2>
+                <form method="post" action="php/uregister.php" onsubmit="return validateRegisterForm();">
+                    <h2>Sign Up</h2>
                     <label for="new-username">Username:</label><br>
                     <input type="text" id="new-username" name="new-username" placeholder="Enter the email"><br>
                     <label for="new-password">Password:</label><br>
