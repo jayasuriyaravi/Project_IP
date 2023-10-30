@@ -25,7 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $result = $conn->query($sql);
 
             if ($result->num_rows > 0) {
-                echo "Login successful";
+                header("Location: index.html");
             } else {
                 echo "Invalid username or password";
             }
