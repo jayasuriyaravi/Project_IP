@@ -25,7 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $result = $conn->query($sql);
 
             if ($result->num_rows > 0) {
-                header("Location: index.html");
+                header("Location: ./index.php");
             } else {
                 echo "Invalid username or password";
             }
@@ -33,6 +33,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
 }
-
 $conn->close();
 ?>
