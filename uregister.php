@@ -25,7 +25,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $sql = "INSERT INTO user (username, password) VALUES ('$newUsername', '$newPassword')";
 
             if ($conn->query($sql) === TRUE) {
-                echo "Registration successful";
+                echo "<script>alert('Registration successful')</script>";
+                header("Location: userlogin.html");
             } else {
                 echo "Error: " . $sql . "<br>" . $conn->error;
             }

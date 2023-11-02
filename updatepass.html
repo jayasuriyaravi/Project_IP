@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Password</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            /* background-color: black; */
+            background-size: auto;
+            background-image: url(project_image/i.avif);
+            /* text-align: center; */
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background-color: #4CAF50;
+            display: flex;
+            flex-direction: column;
+            /* text-align: center; */
+            width: 400px;
+            border: 2px solid #ccc;
+            border-radius: 10px;
+        }
+
+        a {
+            color: black;
+            text-decoration: none;
+            /* optional: removes underline */
+        }
+
+        .user-entry {
+            padding: 30px 50px;
+
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            margin-top: 10px;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        input[type="submit"] {
+            font-size: 15px;
+            width: 100%;
+            background-color: black;
+            color: white;
+            justify-content: center;
+            padding: 10px 15px;
+            margin: auto;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            height: 40px;
+        }
+
+        h2 {
+            text-align: center;
+            padding: 0%;
+            margin-bottom: 15px;
+            margin-top: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="user-entry">
+            <form method="post" action="updatepass.php">
+                <h2>Update Password</h2>
+                <label for="username">Username:</label><br>
+                <input type="text" id="username" name="username" placeholder="Enter your username"><br>
+                <label for="new-password">New Password:</label><br>
+                <input type="password" id="new-password" name="new-password" placeholder="Enter your new password"><br>
+                <input type="submit" name="update-password" value="Update Password">
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>

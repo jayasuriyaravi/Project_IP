@@ -1,311 +1,323 @@
-<?php
-session_start();
-// Assuming the login is successful and the username is set in the session
-if (isset($_SESSION['username'])) {
-    $username = $_SESSION['username'];
-} else {
-    // Redirect to the login page if the user is not logged in
-    header("Location: login.php");
-    exit();
-}
-?>
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Buyer's Dashboard</title>
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100&display=swap" rel="stylesheet">
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <title>Buyer page</title>
     <style>
         body {
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-            margin: 0;
-            font-family: Arial, sans-serif;
+            font-family: 'Poppins', sans-serif;
         }
 
-        .container {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
+        .navbar-brand {
+            color: rgb(58, 114, 44);
         }
 
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background-color: #4CAF50;
-            color: rgb(0, 0, 0);
+        h1 {
+            color: rgb(58, 114, 44);
             padding: 10px;
-            background-attachment: fixed;
+            /* transition: color 0.5s; */
         }
 
-        nav a {
-            color: rgb(0, 0, 0);
-            text-decoration: none;
-            margin: 0 10px;
-            padding: 5px 10px;
-            border-radius: 5px;
+        .card {
+            box-shadow: 0 0px 15px 3px rgba(0, 0, 0, 0.2);
+            transition: 0.5s;
+            border-radius: 10px;
+            font-family: 'Poppins', sans-serif;
         }
 
-        /* .cart-logo a{
-margin: 0%;
-padding: 0%;
-        } */
-
-        .product-cart {
-            background-color: #4CAF50;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            margin-top: 20px;
-            padding: 20px;
+        .navbar-nav .nav-item .nav-link:hover {
+            color: rgb(58, 114, 44);
+            transition: color 0.5s;
         }
 
-        .product-cart h2 {
-            margin: 0%;
-            margin-bottom: 10px;
-            padding: 0%;
-        }
-
-        .product-list {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 20px;
-        }
-
-        .product-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            width: 200px;
-            background-color: #fff;
-            border: 1px solid #000000;
-            padding: 20px;
-            border-radius: 5px;
-        }
-
-        .product-item img {
-            width: 150px;
-            height: 150px;
-            border-radius: 5px;
-        }
-
-        .cart {
-            margin-top: 40px;
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-        }
-
-        .cart-items {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-
-        .footer {
-            background-color: #333;
-            color: white;
-            text-align: center;
-            padding: 10px;
-            margin-top: auto;
-        }
-
-        .slider {
-            width: 80%;
-            margin: 0 auto;
-            margin-top: 20px;
-        }
-
-        .slider img {
-            width: 100%;
-            height: 500px;
-            object-fit: fill;
-        }
-
-        .links {
-            justify-content: center;
-            text-align: center;
-            align-items: center;
-            display: flex;
-            flex-wrap: wrap;
-        }
-
-        .footer {
-            background-color: black;
-            padding: 20px;
-            text-align: center;
-            align-items: center;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-
-        .footer div {
-            color: white;
-            align-items: center;
-            text-align: center;
-        }
-
-        .col-3 {
-            flex-basis: 30%;
-            min-width: 300px;
-        }
-
-        .use a {
-            text-decoration: none;
-            color: #fff;
-        }
-
-        .use h2 {
-            padding: 20px;
-        }
-
-        .use ul {
-            list-style: none;
-        }
-
-        .use ul li {
-            padding: 10px;
-            letter-spacing: 2px;
-            transition: all 1s;
-        }
-
-        .use ul li:hover {
-            transform: translateY(-5px);
-        }
-
-        .con a {
-            text-decoration: none;
-            color: #fff;
-        }
-
-        .con h2 {
-            padding: 20px;
-        }
-
-        .con ul {
-            list-style: none;
-            display: inline-block;
-        }
-
-        .con ul li {
-            display: inline-block;
-            padding: 10px;
-            transition: all 1s;
-        }
-
-        .con ul li:hover {
-            transform: translateX(-5px);
-        }
-
-        .con {
-            letter-spacing: 2px;
-            line-height: 25px;
+        .card:hover {
+            box-shadow: 0px 0px 20px 5px rgba(140, 255, 0, 0.8);
         }
     </style>
 </head>
 
+
 <body>
-    <div class="container">
-        <nav>
-            <div class="logo"><img src="project_image/logo.jpg" height="60px" width="80px">
+
+    <!-- Example Code -->
+    <!-- <div class="container-fluid"> -->
+    <nav class="navbar navbar-expand-lg bg-body-tertiary sticky-top shadow px-5 ">
+        <div class="container-fluid px-5 mx-5">
+            <a class="navbar-brand" href="#">
+                Farmer Market <img src="project_image/Website/logo.jpg" alt=" " width="60px" height="60px">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
+                aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse  text-center " id="navbarText">
+                <ul class="navbar-nav mx-auto mb-2 mb-lg-0 text-black ">
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" aria-current="page" href="Home.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" href="Home.html #about">About Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" href="#product">Product</a>
+                    </li>
+                </ul>
+                <span class="nav-item dropdown me-5">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i
+                            class="bi bi-person-circle"></i>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li class="dropdown-item">Name</li>
+                        <li><a class="dropdown-item" href="#">Logout</a></li>
+                    </ul>
+                </span>
+                <span class="navbar-text ms-2">
+                    <a class="nav-link " href="cart.html">Cart <i class="bi bi-cart-dash"></i></a>
+                </span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- carousel section -->
+    <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active " data-bs-interval="2000">
+                <img src="project_image/Website/slider.jpg" class="d-block w-100" alt="...">
+            </div>
+            <div class="carousel-item" data-bs-interval="2000">
+                <img src="project_image/Website/slider2.jpg" class="d-block w-100" alt="...">
+            </div>
+            <div class="carousel-item" data-bs-interval="2000">
+                <img src="project_image/Website/rice.jpg" class="d-block w-100" alt="...">
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+    <section id="about" class="bg-body-secondary">
+        <div class="container-fluid ">
+            <div class="row p-5  align-items-center  ">
+                <div class="col-md p-5  ">
+                    <img src="project_image/Homepage/farmer.png" alt="" class="img-fluid ">
+                </div>
+                <div class="col-md p-5 text-center">
+                    <h1>Keep Touch With US</h1>
+                    <p class="">Stay updated with the latest offerings, promotions, and seasonal produce from our farm.
+                        Sign up for our newsletter and
+                        be the first to know about exclusive deals and special events. Connect with us on social media
+                        to stay connected and
+                        join our vibrant community of food enthusiasts, farmers, and local supporters. We look forward
+                        to sharing our passion
+                        for fresh, sustainable produce with you!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section id="fruits" class="">
+        <div class="container-fluid p-4 ">
+            <div class="text-center">
+                <h1>Fresh Fruits</h1>
+            </div>
+            <div class="row p-3 px-5  text-center justify-content-center">
+                <div class="card p-0  m-3 me-5 mb-5 me-5 mb-5 " style="width: 18rem;">
+                    <img src="project_image/Fruits/Apple.jpg" class="card-img-top rounded " alt="" height="300px">
+                </div>
+                <div class="card p-0  m-3 me-5 mb-5 me-5 mb-5 " style="width: 18rem;">
+                    <img src="project_image/Fruits/bana.png" class="card-img-top rounded " alt="" height="300px">
+                </div>
+                <div class="card p-0  m-3 me-5 mb-5 me-5 mb-5 " style="width: 18rem;">
+                    <img src="project_image/Fruits/Green Grapes.jpg" class="card-img-top rounded " alt=""
+                        height="300px">
+                </div>
+                <div class="card p-0  m-3 me-5 mb-5 me-5 mb-5 " style="width: 18rem;">
+                    <img src="project_image/Fruits/water.webp" class="card-img-top rounded " alt="" height="300px">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="vegetables" class="bg-body-secondary ">
+        <div class="container-fluid p-4">
+            <div class="text-center">
+                <h1>
+                    vegetables
+                </h1>
+            </div>
+            <div class="row p-3 px-5  text-center justify-content-center">
+                <div class="card p-0  m-3 me-5 mb-5 me-5 mb-5 " style="width: 18rem;">
+                    <img src="project_image/Vegetables/brocoli.jpg" class="card-img-top rounded " alt="" height="300px">
+                </div>
+                <div class="card p-0  m-3 me-5 mb-5 me-5 mb-5 " style="width: 18rem;">
+                    <img src="project_image/Vegetables/Cabbage.jpg" class="card-img-top rounded " alt="" height="300px">
+                </div>
+                <div class="card p-0  m-3 me-5 mb-5 me-5 mb-5 " style="width: 18rem;">
+                    <img src="project_image/Vegetables/Carrot.jpg" class="card-img-top rounded " alt="" height="300px">
+                </div>
+                <div class="card p-0  m-3 me-5 mb-5 me-5 mb-5 " style="width: 18rem;">
+                    <img src="project_image/Vegetables/Cauliflower.jpg" class="card-img-top rounded " alt=""
+                        height="300px">
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- <section id="product" class="">
+        <div class="container-fluid justify-content-evenly p-4 ">
+            <div class="row p-3 px-5  text-center justify-content-center ">
                 <?php
-                echo "<span> Welcome, $username!</span>";
+                // Replace with your database credentials
+                $servername = "localhost";
+                $username = "root";
+                $password = "";
+                $dbname = "project";
+
+                // Create connection
+                $conn = new mysqli($servername, $username, $password, $dbname);
+
+                // Check connection
+                if ($conn->connect_error) {
+                    die("Connection failed: " . $conn->connect_error);
+                }
+
+                // Fetch products from the database
+                $sql = "SELECT * FROM products";
+                $result = $conn->query($sql);
+
+                // Display products in the buyer's page
+                if ($result->num_rows > 0) {
+                    while ($row = $result->fetch_assoc()) {
+                        echo ' 
+                    <div class="card p-0 m-3 me-5 mb-5" style="width: 18rem;">
+                           <img src="project_image/' . $row["product_image"] . '" class="card-img-top" height="290px" alt="">
+                        <div class="card-body">
+                            <h5 class="card-title">' . $row["product_name"] . '</h5>
+                            <p class="card-text"><b>Price:</b><span>$' . $row["product_price"] . '</span>
+                            </p>
+                            <a href="#" class="btn btn-primary">Add to Cart</a>
+                        </div>
+                    </div>
+                 ';
+                    }
+                } else {
+                    echo "0 results";
+                }
+                $conn->close();
                 ?>
             </div>
-            <div class="links">
-                <a href="#">Home</a>
-                <a href="#">Products</a>
-                <a href="#">About Us</a>
-                <a href="#">Contact Us</a>
-                <!-- <span>Welcome, Buyer Name!</span> -->
-            </div>
-            <div class="cart-logo">
-                <a href="#">Cart<i class="fas fa-shopping-cart"></i></a>
-            </div>
-        </nav>
-        <div class="slider">
-            <div><img src="project_image/img5.avif" alt="Slide 1"></div>
-            <div><img src="project_image/img6.jpg" alt="Slide 2"></div>
-            <div><img src="project_image/img7.jpg" alt="Slide 3"></div>
-            <div><img src="project_image/img4.avif" alt="Slide 4"></div>
-            <!-- Add more slides as needed -->
         </div>
+    </section> -->
 
-        <div class="product-cart">
-            <h2>Product Cart</h2>
-            <div class="product-list">
-                <div class="product-item">
-                    <img src="project_image/img6.jpg" alt="Product 1">
-                    <p>Product 1 description</p>
-                    <button>Add to Cart</button>
-                </div>
-                <div class="product-item">
-                    <img src="product_image2.jpg" alt="Product 2">
-                    <p>Product 2 description</p>
-                    <button>Add to Cart</button>
-                </div>
-                <div class="product-item">
-                    <img src="product_image3.jpg" alt="Product 3">
-                    <p>Product 3 description</p>
-                    <button>Add to Cart</button>
-                </div>
-                <!-- Add more product items as needed -->
-            </div>
-        </div>
 
-        <div class="footer" id="Contact">
-            <div class="col-3 flogo">
-                <img src="project_image/logo.jpg" height="60px" width="80px">
-                <span class="name">Farmer Market</span>
+    <section id="product" class="">
+        <div class="container-fluid justify-content-evenly p-4 ">
+            <div class="text-center">
+                <h1>
+                    Products
+                </h1>
             </div>
-            <div class="col-3 use">
-                <h2>USEFUL LINKS</h2>
-                <ul>
-                    <li><a href="#home">Home</a> </li>
-                    <li><a href="#about">About</a> </li>
-                    <li><a href="#Contact">Contact</a> </li>
-                    <li><a href="#account">Account</a> </li>
+            <div class="row p-3 px-5  text-center justify-content-center ">
+                <div class="card p-0  m-3 me-5 mb-5 " style="width: 18rem;">
+                    <img src="project_image/img4.avif" class="card-img-top" height="290px" alt="">
+                    <div class="card-body">
+                        <h5 class="card-title">Fresh Organic Apples</h5>
+                        <p class="card-text"><b>Price:</b>
+                            <spam>$100</spam>
+                        </p>
+                        <div class="align-items-center mb-3">
+                            <!-- <button class="btn btn-secondary me-2">-</button>
+                            <span>1</span>
+                            <button class="btn btn-secondary ms-2">+</button> -->
+                        </div>
+                        <a href="#" class="btn btn-primary">Add to Cart</a>
+                    </div>
+                </div>
+                <div class="card p-0  m-3 me-5 mb-5" style="width: 18rem;">
+                    <img src="project_image/img5.avif" class="card-img-top rounded " height="290px" alt="">
+                    <div class="card-body">
+                        <h5 class="card-title">Farm-Fresh Tomatoes</h5>
+                        <p class="card-text"><b>Price:</b>
+                            <spam>$100</spam>
+                        </p>
+
+                        <a href="#" class="btn btn-primary">Add to Cart</a>
+                    </div>
+                </div>
+                <div class="card p-0  m-3 me-5 mb-5 " style="width: 18rem;">
+                    <img src="project_image/img5.avif" class="card-img-top rounded " alt="" height="300px">
+                    <div class="card-body">
+                        <h5 class="card-title">Locally Sourced Honey</h5>
+                        <p class="card-text"><b>Price:</b>
+                            <spam>$100</spam>
+                        </p>
+
+                        <a href="#" class="btn btn-primary">Add to Cart</a>
+                    </div>
+                </div>
+                <div class="card p-0  m-3 me-5 mb-5" style="width: 18rem;">
+                    <img src="project_image/img5.avif" class="card-img-top rounded " alt="" height="300px">
+                    <div class="card-body">
+                        <h5 class="card-title">Organic Leafy Greens</h5>
+                        <p class="card-text"><b>Price:</b>
+                            <spam>$100</spam>
+                        </p>
+                        <a href="#" class="btn btn-primary">Add to Cart</a>
+                    </div>
+                </div>
+                <div class="card p-0  m-3 me-5 mb-5" style="width: 18rem;">
+                    <img src="project_image/img5.avif" class="card-img-top rounded " alt="" height="300px">
+                    <div class="card-body">
+                        <h5 class="card-title">Freshly Laid Farm Eggs</h5>
+                        <p class="card-text"><b>Price:</b>
+                            <spam>$100</spam>
+                        </p>
+                        <a href="#" class="btn btn-primary">Add to Cart</a>
+                    </div>
+                </div>
+            </div>
+    </section>
+    <footer class="container-fluid bg-dark text-white text-center py-3 mt-5">
+        <div class="row p-5 ">
+            <div class="col-md-4">
+                <h5>About Us</h5>
+                <p>We are committed to providing the best products and services to our customers.</p>
+            </div>
+            <div class="col-md-4">
+                <h5>Contact Information</h5>
+                <p>Email: contact@ecommercesite.com</p>
+                <p>Phone: 123-456-7890</p>
+            </div>
+            <div class="col-md-4">
+                <h5>Quick Links</h5>
+                <ul class="list-unstyled">
+                    <li class="my-3"><a class="nav-link" href="#">Home</a></li>
+                    <li class="my-3"><a class="nav-link" href="#">Products</a></li>
+                    <li class="my-3"><a class="nav-link" href="#">About Us</a></li>
+                    <li class="my-3"><a class="nav-link" href="#">Contact Us</a></li>
                 </ul>
             </div>
-            <div class="col-3 con">
-                <h2>Contact Us</h2>
-                <p>
-                    Playcode,<br>
-                    123 Main St,<br>
-                    Anytown, USA 12345,<br>
-                    Phone: (123) 456-7890<br>
-                    Email: codeplay@info.com
-                </p><br>
-                <ul>
-                    <li><a href="#"><i class="fa fa-instagram"></i></a> </li>
-                    <li><a href="#"><i class="fa fa-whatsapp"></i></a> </li>
-                    <li><a href="#"><i class="fa fa-twitter"></i></a> </li>
-                    <li><a href="#"><i class="fa fa-facebook"></i></a> </li>
-                </ul>
-            </div>
         </div>
-    </div>
-
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-    <script>
-        $(document).ready(function () {
-            $('.slider').slick({
-                autoplay: true, // Enable auto play
-                autoplaySpeed: 2000, // Set the auto play speed in milliseconds
-                dots: false, // Hide the page number
-                arrows: false, // Hide the navigation arrows
-            });
-        });
-    </script>
+        <hr>
+        <p>&copy; 2023 Your E-Commerce Site. All rights reserved.</p>
+    </footer>
 
 </body>
 

@@ -23,9 +23,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         } else {
             $sql = "SELECT * FROM user WHERE username = '$username' AND password = '$password'";
             $result = $conn->query($sql);
-
             if ($result->num_rows > 0) {
-                header("Location: ./index.php");
+                echo "<script>alert('logined successfully')</script>";
+                header("Location: index.html");
             } else {
                 echo "Invalid username or password";
             }

@@ -152,7 +152,7 @@
 </head>
 
 <body>
-                <h1>User Login</h1>
+    <h1>Farmer Login</h1>
 
     <div class="container">
 
@@ -163,21 +163,21 @@
 
         <div class="user-entry">
             <div class="loginForm">
-                <form method="post" action="ulogin.php" onsubmit="return validateLoginForm();">
+                <form method="post" action="flogin.php" onsubmit="return validateLoginForm();">
                     <!-- <h2>User</h2> -->
                     <h2>Sign In</h2>
                     <label for="username">Username:</label><br>
                     <input type="text" id="username" name="username" placeholder="Email or Username"><br>
                     <label for="password">Password:</label><br>
                     <input type="password" id="password" name="password" placeholder="Password">
-                    <span><a href="updatepass.html">Forgot password?</a></span>
+                    <span><a href="fupdatepass.html">Forgot password?</a></span>
                     <span id="login-error" style="color: red;"></span><br><br>
                     <input type="submit" value="Login">
                 </form>
             </div>
 
             <div class="registerForm">
-                <form method="post" action="uregister.php" onsubmit="return validateRegisterForm();">
+                <form method="post" action="fregister.php" onsubmit="return validateRegisterForm();">
                     <!-- <h2>User</h2> -->
                     <h2>Sign Up</h2>
                     <label for="new-username">Username:</label><br>
