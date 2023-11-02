@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Cart Page</title>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary sticky-top shadow">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Farmer Market</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
+                aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarText">
+                <ul class="navbar-nav mx-auto mb-2 mb-lg-0 ">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Features</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Pricing</a>
+                    </li>
+                </ul>
+                <span class="navbar-text">
+                    <a class="nav-link " href="cart.html">Cart <i class="bi bi-cart-dash"></i></a>
+                </span>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container my-5">
+        <h2 class="text-center my-5">Your Cart</h2>
+
+        <!-- Displaying cart items in a container -->
+        <div class="cart-container">
+            <!-- Cart items will be displayed here -->
+        </div>
+
+        <div class="text-end my-4">
+            <h5>Total Price: $100</h5>
+        </div>
+        <div class="text-center">
+            <button class="btn btn-primary">Buy Now</button>
+        </div>
+    </div>
+
+    <footer class="container-fluid bg-dark text-white text-center py-3 mt-5">
+        <div class="row p-5 ">
+            <div class="col-md-4">
+                <h5>About Us</h5>
+                <p>We are committed to providing the best products and services to our customers.</p>
+            </div>
+            <div class="col-md-4">
+                <h5>Contact Information</h5>
+                <p>Email: contact@ecommercesite.com</p>
+                <p>Phone: 123-456-7890</p>
+            </div>
+            <div class="col-md-4">
+                <h5>Quick Links</h5>
+                <ul class="list-unstyled">
+                    <li class="my-3"><a class="nav-link" href="#">Home</a></li>
+                    <li class="my-3"><a class="nav-link" href="#">Products</a></li>
+                    <li class="my-3"><a class="nav-link" href="#">About Us</a></li>
+                    <li class="my-3"><a class="nav-link" href="#">Contact Us</a></li>
+                </ul>
+            </div>
+        </div>
+        <hr>
+        <p>&copy; 2023 Your E-Commerce Site. All rights reserved.</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Retrieve the cart items from local storage
+        const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+
+        // Display the cart items in the cart container
+        const cartContainer = document.querySelector('.cart-container');
+
+        cartItems.forEach(item => {
+            const cartItem = document.createElement('div');
+            cartItem.innerHTML = `
+                <div class="row my-4">
+                    <div class="col-md">
+                        <div class="card">
+                            <div class="row g-0">
+                                <div class="col-md-4">
+                                    <img src="project_image/img4.avif" class="img-fluid rounded-start" alt="Product Image">
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="card-body ">
+                                        <h5 class="card-title">${item.name}</h5>
+                                        <p class="card-text">Price: ${item.price}</p>
+                                        <div class="d-flex align-items-center">
+                                            <button class="btn btn-secondary me-2">-</button>
+                                            <span>1</span>
+                                            <button class="btn btn-secondary ms-2">+</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            cartContainer.appendChild(cartItem);
+        });
+    </script>
+</body>
+
+</html>
