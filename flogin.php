@@ -1,4 +1,5 @@
 <?php
+session_start();
 $servername = "localhost";
 $username = "root";
 $password = "";
@@ -24,8 +25,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $sql = "SELECT * FROM farmer WHERE username = '$username' AND password = '$password'";
             $result = $conn->query($sql);
             if ($result->num_rows > 0) {
+                $_SESSION['username'] = $username;
                 echo "<script>alert('logined successfully')</script>";
-                header("Location: fproductadd.html");
+                header("Location: fproductadd.php");
             } else {
                 echo "Invalid username or password";
             }

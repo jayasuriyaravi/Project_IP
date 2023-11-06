@@ -1,4 +1,5 @@
 <?php
+session_start();
 $servername = "localhost";
 $username = "root";
 $password = "";
@@ -12,6 +13,9 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
+?>
+<?php
+
 // Handle login form
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['username']) && isset($_POST['password'])) {
@@ -24,8 +28,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $sql = "SELECT * FROM user WHERE username = '$username' AND password = '$password'";
             $result = $conn->query($sql);
             if ($result->num_rows > 0) {
+                $_SESSION['username'] = $username;
                 echo "<script>alert('logined successfully')</script>";
-                header("Location: index.html");
+                header("Location: index.php");
             } else {
                 echo "Invalid username or password";
             }
