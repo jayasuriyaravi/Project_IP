@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farmer-Market</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+</head>
+
+<body>
+    <div class="header" id="home">
+        <div class="container">
+            <div class="navbar">
+                <div class="logo">
+                    <img src="project_image/logo.jpg" height="60px" width="80px">
+                    <!-- <span class="name">Former Market</span> -->
+                </div>
+                <nav id="mylinks">
+                    <ul id="MenuItems">
+                        <li><a href="#home">Home</a> </li>
+                        <li><a href="#about">About</a> </li>
+                        <li><a href="#Contact">Contact</a> </li>
+                        <li><a href="#account">Account</a> </li>
+                    </ul>
+                </nav>
+                <div class="menu-icon" onclick="menutoggle()">
+                    <i class="fa fa-bars"></i>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-1">
+                    <h2 class="">Welcome to <br>Our E-Commerce Farmer Market</h2>
+                    <p class="text">where we bring you the freshest and finest produce directly from the farms. Our
+                        platform is designed to bridge the gap
+                        between farmers and consumers, allowing you to discover a wide array of locally sourced
+                        products..</p>
+                    <p class="text">Welcome to our platform where you can find a wide range of products from various
+                        formers. Explore our
+                        diverse collection and enjoy a seamless shopping experience!</p>
+                    </br>
+                    </br>
+                    <!-- <button class="btn"><a href="sample.html">Start Play..!</a></button> -->
+                </div>
+                <div class="col-1 sr">
+                    <img class="code" src="project_image/img6.jpg">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="account-section">
+        <div class="container">
+            <div class="row" id="account">
+                <div class="content acc">
+                    <h1 class="">Account!</h1>
+                    <p class="text1">
+                        "Please log in to get started and explore the best of our platform.<br> Join us in celebrating
+                        the essence of farm-fresh
+                        goodness and sustainable agriculture.<br> Choose your role below and begin your journey with
+                        us."
+                    </p>
+                    <p class="text1">
+                        Sign in today to unlock a realm of farm-fresh delights and meaningful connections.<br> Let's
+                        embark on a journey together,
+                        where every harvest tells a story and every purchase supports local sustainability
+                    </p> <br><br>
+                    <button class="btn"><a href="farmerlogin.html">Farmer</a></button>
+                    <button class="btn"><a href="userlogin.html">Buyer</a></button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="About-section">
+        <div class="container">
+            <div class="row" id="about">
+                <div class="col-1 img">
+                    <img class="code" src="project_image/img3.avif">
+                </div>
+                <div class="col-1 content">
+
+                    <h1 class="">AboutUs!</h1>
+                    <p class="text2">At<span class="title">Farmer Market</span> we are passionate about fostering a
+                        direct connection between consumers and
+                        farmers. Our platform serves as a catalyst for empowering farmers to showcase their harvests and
+                        share their stories
+                        while enabling customers to make informed choices about the products they purchase.</p>
+                    <p class="text2"> Our dedicated team works tirelessly to ensure a seamless and secure shopping
+                        experience, emphasizing the values of
+                        authenticity, quality, and reliability. Join us in our mission to promote responsible farming
+                        practices and enhance the
+                        accessibility of fresh, locally grown produce for everyone."</p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer" id="Contact">
+        <div class="col-3 flogo">
+            <img src="project_image/logo.jpg" height="60px" width="80px">
+            <span class="name">Farmer Market</span>
+        </div>
+        <div class="col-3 use">
+            <h2>USEFUL LINKS</h2>
+            <ul>
+                <li><a href="#home">Home</a> </li>
+                <li><a href="#about">About</a> </li>
+                <li><a href="#Contact">Contact</a> </li>
+                <li><a href="#account">Account</a> </li>
+            </ul>
+        </div>
+        <div class="col-3 con">
+            <h2>Contact Us</h2>
+            <p>
+                Playcode,<br>
+                123 Main St,<br>
+                Anytown, USA 12345,<br>
+                Phone: (123) 456-7890<br>
+                Email: codeplay@info.com
+            </p><br>
+            <ul>
+                <li><a href="#"><i class="fa fa-instagram"></i></a> </li>
+                <li><a href="#"><i class="fa fa-whatsapp"></i></a> </li>
+                <li><a href="#"><i class="fa fa-twitter"></i></a> </li>
+                <li><a href="#"><i class="fa fa-facebook"></i></a> </li>
+            </ul>
+        </div>
+    </div>
+    <script>
+        /* Toggle between showing and hiding the navigation menu links when the user clicks on the hamburger menu / bar icon */
+        var MenuItems = document.getElementById("MenuItems");
+
+        MenuItems.style.maxHeight = "0px";
+
+        function menutoggle() {
+            if (MenuItems.style.maxHeight == "0px") {
+                MenuItems.style.maxHeight = "200px";
+            }
+            else {
+                MenuItems.style.maxHeight = "0px";
+            }
+        }
+    </script>
+</body>
+
+</html>
